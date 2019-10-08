@@ -1,111 +1,59 @@
 const PokerHand = require('./pokerhand')
 
-test.skip('shouldBeAbleToClassifyAllSameSuit', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 5, suit: 'C' },
-        { value: 7, suit: 'C' },
-        { value: 1, suit: 'C' },
-        { value: 4, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyAllSameSuit', () => {
+    const hand = "1C 1C 4C 5C 7C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.isAllSameSuit()).toBe(true)
 })
 
-test.skip('shouldBeAbleToClassifyNotAllSameSuit', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 5, suit: 'D' },
-        { value: 7, suit: 'C' },
-        { value: 1, suit: 'C' },
-        { value: 1, suit: 'A' }
-    ]
+test('shouldBeAbleToClassifyNotAllSameSuit', () => {
+    const hand = "1C 1C 1A 5D 7C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.isAllSameSuit()).toBe(false)
 })
 
-test.skip('shouldBeAbleToClassifyAllConsecutiveValue', () => {
-    const hand = [
-        { value: 5, suit: 'C' },
-        { value: 6, suit: 'D' },
-        { value: 7, suit: 'C' },
-        { value: 8, suit: 'C' },
-        { value: 9, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyAllConsecutiveValue', () => {
+    const hand = "5C 6D 7C 8C 9C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.isAllConsecutiveValue()).toBe(true)
 })
 
-test.skip('shouldBeAbleToClassifyNotAllConsecutiveValue', () => {
-    const hand = [
-        { value: 5, suit: 'C' },
-        { value: 6, suit: 'D' },
-        { value: 7, suit: 'C' },
-        { value: 9, suit: 'C' },
-        { value: 9, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyNotAllConsecutiveValue', () => {
+    const hand = "5C 6D 7C 9C 9C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.isAllConsecutiveValue()).toBe(false)
 })
 
-test.skip('shouldBeAbleToGroupValue 1', () => {
-    const hand = [
-        { value: 5, suit: 'C' },
-        { value: 5, suit: 'D' },
-        { value: 5, suit: 'C' },
-        { value: 9, suit: 'C' },
-        { value: 9, suit: 'C' }
-    ]
+test('shouldBeAbleToGroupValue 1', () => {
+    const handA = "5C 5C 5D 9C 9C"
+    const handB = "1C 2D 2C 3C 4C"
 
-    const pokerhand = new PokerHand(hand)
+    const pokerhandA = new PokerHand(handA)
+    const pokerhandB = new PokerHand(handB)
 
-    expect(pokerhand.getGroupsOfValue()).toEqual([3, 2])
+    expect(pokerhandA.getGroupsOfValue()).toEqual([3, 2])
+    expect(pokerhandB.getGroupsOfValue()).toEqual([1, 2, 1, 1])
+
 })
 
-test.skip('shouldBeAbleToGroupValue 2', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'D' },
-        { value: 2, suit: 'C' },
-        { value: 3, suit: 'C' },
-        { value: 4, suit: 'C' }
-    ]
-
-    const pokerhand = new PokerHand(hand)
-
-    expect(pokerhand.getGroupsOfValue()).toEqual([1, 2, 1, 1])
-})
-
-test.skip('shouldBeAbleToClassifyStraightFlush', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'C' },
-        { value: 3, suit: 'C' },
-        { value: 4, suit: 'C' },
-        { value: 5, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyStraightFlush', () => {
+    const hand = "1C 2C 3C 4C 5C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(8)
 })
 
-test.skip('shouldBeAbleToClassifyFlush', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'C' },
-        { value: 7, suit: 'C' },
-        { value: 9, suit: 'C' },
-        { value: 10, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyFlush', () => {
+    const hand = "1C 2C 7C 9C 10C"
 
     const pokerhand = new PokerHand(hand)
 
@@ -113,98 +61,56 @@ test.skip('shouldBeAbleToClassifyFlush', () => {
 })
 
 
-test.skip('shouldBeAbleToClassifyStraight', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'H' },
-        { value: 3, suit: 'C' },
-        { value: 4, suit: 'D' },
-        { value: 5, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyStraight', () => {
+    const hand = "1C 2H 3C 4D 5C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(4)
 })
 
-test.skip('shouldBeAbleToClassifyFourOfAKind', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'H' },
-        { value: 2, suit: 'C' },
-        { value: 2, suit: 'D' },
-        { value: 2, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyFourOfAKind', () => {
+    const hand = "1C 2H 2C 2C 2D"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(7)
 })
 
-test.skip('shouldBeAbleToClassifyFullHouse', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 1, suit: 'H' },
-        { value: 2, suit: 'C' },
-        { value: 2, suit: 'D' },
-        { value: 2, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyFullHouse', () => {
+    const hand = "1C 1H 2C 2C 2D"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(6)
 })
 
-test.skip('shouldBeAbleToClassifyThreeOfAKind', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 4, suit: 'H' },
-        { value: 2, suit: 'C' },
-        { value: 2, suit: 'D' },
-        { value: 2, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyThreeOfAKind', () => {
+    const hand = "1C 2C 2C 2D 4H"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(3)
 })
 
-test.skip('shouldBeAbleToClassifyTwoPairs', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 1, suit: 'H' },
-        { value: 2, suit: 'C' },
-        { value: 3, suit: 'D' },
-        { value: 3, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyTwoPairs', () => {
+    const hand = "1C 1H 2C 3D 3C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(2)
 })
 
-test.skip('shouldBeAbleToClassifyPair', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'H' },
-        { value: 2, suit: 'C' },
-        { value: 3, suit: 'D' },
-        { value: 4, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyPair', () => {
+    const hand = "1C 2H 2C 3D 4C"
 
     const pokerhand = new PokerHand(hand)
 
     expect(pokerhand.getRank()).toEqual(1)
 })
 
-test.skip('shouldBeAbleToClassifyHighCard', () => {
-    const hand = [
-        { value: 1, suit: 'C' },
-        { value: 2, suit: 'H' },
-        { value: 9, suit: 'C' },
-        { value: 3, suit: 'D' },
-        { value: 4, suit: 'C' }
-    ]
+test('shouldBeAbleToClassifyHighCard', () => {
+    const hand = "1C 2H 3D 4C 9C"
 
     const pokerhand = new PokerHand(hand)
 
@@ -215,7 +121,7 @@ test('shouldBeAbleToParseStringOfCardsToArrayOfCardsObject', () => {
     const stringOfCardsA = "2C 8H 10C QS AS"
     const stringOfCardsB = "1H 6D JC KS AD"
 
-    const pokerhand = new PokerHand([])
+    const pokerhand = new PokerHand("")
 
     expect(pokerhand.parseStringOfCardsToArrayOfCardsObject(stringOfCardsA)).toEqual([
         { value: 2, suit: 'C' },
@@ -238,7 +144,7 @@ test('shouldBeAbleToParseStringOfCardToCardObject', () => {
     const stringOfCardA = "1H"
     const stringOfCardB = "JC"
 
-    const pokerhand = new PokerHand([])
+    const pokerhand = new PokerHand("")
 
     expect(pokerhand.parseStringOfCardToCardObject(stringOfCardA)).toEqual({
         value: 1,
@@ -257,7 +163,7 @@ test('shouldBeAbleToGetCardNumericValueFromStringOfValue', () => {
     const stringOfValueJack = 'J'
     const stringOfValueAce = 'A'
 
-    const pokerhand = new PokerHand([])
+    const pokerhand = new PokerHand("")
 
     expect(pokerhand.getCardNumericValueFromString(stringOfValueOne)).toBe(1)
     expect(pokerhand.getCardNumericValueFromString(stringOfValueTen)).toBe(10)

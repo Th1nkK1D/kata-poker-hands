@@ -1,6 +1,6 @@
 class PokerHand {
     constructor(hand) {
-        this.hand = hand.sort((cardA, cardB) => cardA.value - cardB.value)
+        this.hand = this.parseStringOfCardsToArrayOfCardsObject(hand)
     }
 
     parseStringOfCardsToArrayOfCardsObject(stringOfCards) {
