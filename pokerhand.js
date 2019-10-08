@@ -3,6 +3,18 @@ class PokerHand {
         this.hand = hand.sort((cardA, cardB) => cardA.value - cardB.value)
     }
 
+
+    getCardNumericValueFromString(stringOfValue) {
+        const stringToNumericMap = {
+            'J': 11,
+            'Q': 12,
+            'K': 13,
+            'A': 14
+        }
+
+        return parseInt(stringOfValue) || stringToNumericMap[stringOfValue]
+    }
+
     isAllSameSuit() {
         for(let i = 1; i < this.hand.length; i++) {
             if (this.hand[i].suit !== this.hand[i-1].suit) {
