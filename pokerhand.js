@@ -1,3 +1,18 @@
+const STRING_TO_NUMERIC = {
+    'J': 11,
+    'Q': 12,
+    'K': 13,
+    'A': 14
+}
+
+const GROUPS_RANK = {
+    fourOfAKind: [1, 4],
+    fullHouse: [2, 3],
+    threeOfAKind: [1, 1, 3],
+    twoPairs: [1, 2, 2],
+    pair: [1, 1, 1, 2]
+}
+ 
 class PokerHand {
     constructor(hand) {
         this.hand = this.parseStringOfCardsToArrayOfCardsObject(hand)
@@ -15,14 +30,7 @@ class PokerHand {
     }
 
     getCardNumericValueFromString(stringOfValue) {
-        const stringToNumericMap = {
-            'J': 11,
-            'Q': 12,
-            'K': 13,
-            'A': 14
-        }
-
-        return parseInt(stringOfValue) || stringToNumericMap[stringOfValue]
+        return parseInt(stringOfValue) || STRING_TO_NUMERIC[stringOfValue]
     }
 
     isAllSameSuit() {
@@ -72,15 +80,15 @@ class PokerHand {
             } else {
                 const groups = this.getGroupsOfValue().sort()
 
-                if(this.isEqualGroup(groups, [1, 4])) {
+                if(this.isEqualGroup(groups, GROUPS_RANK.fourOfAKind)) {
                     return 7
-                } else if(this.isEqualGroup(groups, [2, 3])) {
+                } else if(this.isEqualGroup(groups, GROUPS_RANK.fullHouse)) {
                     return 6
-                } else if(this.isEqualGroup(groups, [1, 1, 3])) {
+                } else if(this.isEqualGroup(groups, GROUPS_RANK.threeOfAKind)) {
                     return 3
-                } else if(this.isEqualGroup(groups, [1, 2, 2])) {
+                } else if(this.isEqualGroup(groups, GROUPS_RANK.twoPairs)) {
                     return 2
-                } else if(this.isEqualGroup(groups, [1, 1, 1, 2])) {
+                } else if(this.isEqualGroup(groups, GROUPS_RANK.pair)) {
                     return 1
                 } else {
                     return 0
