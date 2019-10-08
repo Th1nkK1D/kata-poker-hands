@@ -1,4 +1,4 @@
-const PokerHand = require('./pokerhand')
+const PokerHand = require('../src/pokerhand')
 
 test('Should be able to classify all same suit', () => {
     const hand = "1C 1C 4C 5C 7C"
