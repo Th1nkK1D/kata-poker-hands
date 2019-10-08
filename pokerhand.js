@@ -12,6 +12,16 @@ class PokerHand {
     
         return true
     }
+    
+    isAllConsecutiveValue() {
+        for(let i = 1; i < this.hand.length; i++) {
+            if (this.hand[i].value - this.hand[i-1].value !== 1) {
+                return false
+            }
+        }
+    
+        return true
+    }
 }
 
 module.exports = PokerHand

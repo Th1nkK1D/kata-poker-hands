@@ -27,3 +27,31 @@ test('shouldBeAbleToClassifyNotAllSameSuit', () => {
 
     expect(pokerhand.isAllSameSuit()).toBe(false)
 })
+
+test('shouldBeAbleToClassifyAllConsecutiveValue', () => {
+    const hand = [
+        { value: 5, suit: 'C' },
+        { value: 6, suit: 'D' },
+        { value: 7, suit: 'C' },
+        { value: 8, suit: 'C' },
+        { value: 9, suit: 'C' }
+    ]
+
+    const pokerhand = new PokerHand(hand)
+
+    expect(pokerhand.isAllConsecutiveValue()).toBe(true)
+})
+
+test('shouldBeAbleToClassifyNotAllConsecutiveValue', () => {
+    const hand = [
+        { value: 5, suit: 'C' },
+        { value: 6, suit: 'D' },
+        { value: 7, suit: 'C' },
+        { value: 9, suit: 'C' },
+        { value: 9, suit: 'C' }
+    ]
+
+    const pokerhand = new PokerHand(hand)
+
+    expect(pokerhand.isAllConsecutiveValue()).toBe(false)
+})
