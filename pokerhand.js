@@ -22,6 +22,20 @@ class PokerHand {
     
         return true
     }
+    
+    getGroupsOfValue() {
+        let groups = [1]
+    
+        for(let i = 1; i < this.hand.length; i++) {
+            if (this.hand[i].value - this.hand[i-1].value === 0) {
+                groups[groups.length - 1]++
+            } else {
+                groups.push(1)
+            }
+        }
+    
+        return groups
+    }
 }
 
 module.exports = PokerHand
