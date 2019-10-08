@@ -211,6 +211,23 @@ test.skip('shouldBeAbleToClassifyHighCard', () => {
     expect(pokerhand.getRank()).toEqual(0)
 })
 
+test('shouldBeAbleToParseStringOfCardToCardObject', () => {
+    const stringOfCardA = "1H"
+    const stringOfCardB = "JC"
+
+    const pokerhand = new PokerHand([])
+
+    expect(pokerhand.parseStringOfCardToCardObject(stringOfCardA)).toEqual({
+        value: 1,
+        suit: 'H'
+    })
+
+    expect(pokerhand.parseStringOfCardToCardObject(stringOfCardB)).toEqual({
+        value: 11,
+        suit: 'C'
+    })
+})
+
 test('shouldBeAbleToGetCardNumericValueFromStringOfValue', () => {
     const stringOfValueOne = '1'
     const stringOfValueTen = '10'
