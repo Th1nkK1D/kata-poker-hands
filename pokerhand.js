@@ -36,6 +36,40 @@ class PokerHand {
     
         return groups
     }
+
+    getRank() {
+        if(this.isAllSameSuit()) {
+            if(this.isAllConsecutiveValue()) {
+                return 8
+            } else {
+                return 5
+            }       
+        } else {
+            if(this.isAllConsecutiveValue()) {
+                return 4
+            } else {
+                const groups = this.getGroupsOfValue().sort()
+
+                if(this.isEqualGroup(groups, [1, 4])) {
+                    return 7
+                } else if(this.isEqualGroup(groups, [2, 3])) {
+                    return 6
+                } else if(this.isEqualGroup(groups, [1, 1, 3])) {
+                    return 3
+                } else if(this.isEqualGroup(groups, [1, 2, 2])) {
+                    return 2
+                } else if(this.isEqualGroup(groups, [1, 1, 1, 2])) {
+                    return 1
+                } else {
+                    return 0
+                }
+            }  
+        }
+    }
+
+    isEqualGroup(a, b) {
+        return JSON.stringify(a) === JSON.stringify(b)
+    }
 }
 
 module.exports = PokerHand
