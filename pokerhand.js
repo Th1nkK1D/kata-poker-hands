@@ -3,6 +3,10 @@ class PokerHand {
         this.hand = hand.sort((cardA, cardB) => cardA.value - cardB.value)
     }
 
+    parseStringOfCardsToArrayOfCardsObject(stringOfCards) {
+        return stringOfCards.split(' ').map(cardString => this.parseStringOfCardToCardObject(cardString))
+    }
+
     parseStringOfCardToCardObject(stringOfCard) {
         return {
             value: this.getCardNumericValueFromString(stringOfCard.slice(0, -1)),
